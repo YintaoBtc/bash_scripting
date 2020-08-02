@@ -1,0 +1,181 @@
+# Level 0
+Connect via ssh
+cat readme --> contraseña bandit1
+
+# Level 1
+ls 
+cat ./-
+pwd
+cat /home/bandit1/-
+cat /home/bandit1/*
+cat $(pwd)/-
+
+# Level 2
+ls
+cat "spaces in this filename"
+cat spac + TAB
+cat sp*
+cat *name
+cat *this*
+cat /home/bandit2/*
+cat $(pwd)/*
+
+# Level 3
+ls
+ls inhere/
+ls -a inhere/
+find . -type f   --> list files only
+find . -type f -printf "%f\t$p\t%p\t%u\t%g\t%m\n" | column -t
+cat inhere/.hidden
+find . -name .hidden |  xargs cat
+
+# Level 4
+ls
+ls -l inhere/
+find . -name -file*
+file inhere/*
+find . -name -file* | xargs file
+time find . -name -file* | xargs file
+find . -name -file07 | xargs cat
+cat $(find . -name -file07)
+
+# Level 5
+ls
+ls -l inhere/
+find . -type f -readable ! -executable
+CTR+L --> history
+find . -type f -readable ! -executable -size 1033c  --> bytes add c
+find . -type f -readable ! -executable -size 1033c | xargs cat
+find . -type f -readable ! -executable -size 1033c | xargs cat | xargs
+
+# Level 6
+* owned by user bandit7
+* owned by group bandit6
+* 33 bytes in size
+
+ls
+find / -user bandit7 -group bandit6 -size 33c  --> permission denied
+find / -user bandit7 -group bandit6 -size 33c 2>/dev/null --> stderr at null. Error dont show in terminal
+find / -user bandit7 -group bandit6 -size 33c 2>/dev/null | xargs cat
+
+disown -a --> run app & and exit terminal
+
+# Level 7
+ls
+cat data.txt
+cat data.txt | wc -l  --> list count
+cat data.txt | grep "millionth"
+grep "millionth" data.txt --> more optimal
+awk '/millionth/' data.txt
+
+check <time> for optimal
+time grep "millionth" data.txt 
+time awk '/millionth/' data.txt
+
+awk '/millionth/' data.txt | awk '{print $1}' --> first arg
+awk '/millionth/' data.txt | awk '{print $2}' --> second arg
+
+grep "millionth" data.txt -n  --> number of line
+awk 'NR==37262' data.txt
+
+# Level 8
+ls
+cat data.txt
+cat data.txt | wc -l
+cat data.txt | sort | uniq -u --> unique need sort for work
+
+# Level 9
+ls
+cat data.txt
+strings data.txt
+strings data.txt | grep "==="
+strings data.txt | grep "===" |  tail -n 3
+
+# Bucles
+
+#!/bin/bash
+cat /etc/passwd | while read line; dont
+    echo "We are here: $line"
+done
+
+Optimal:
+while read line; do
+    echo "We are here: $line"
+done < /etc/passwd
+
+# Count
+#!/bin/bash
+count = 1
+
+while read line; do
+    echo "Line $count: $line"
+    let contador+=1
+done < /etc/passwd
+
+one line script
+count=1; strings data.txt | grep "===" | while read line; do echo "Line $count: $line; let count+=1; done | awk 'NR==4'
+count=1; strings data.txt | grep "===" | while read line; do echo "Line $count: $line; let count+=1; done | awk 'NR==4' | awk 'NF{print $NF}'
+
+# Level 10
+ls
+cat data.txt --> base64
+
+echo "Hi there!" | base64 --> code
+echo "Hi there!" | base64 | base64 -d  --> decode
+
+cat data.txt | base64 -d
+cat data.txt | base64 -d | tr ' ' '\n'
+cat data.txt | base64 -d | sed 's/ /\n/g'
+
+# Level 11
+ls
+cat data.txt
+cat data.txt | tr '[G-ZA-Fg-za-f]' '[T-ZA-St-za-s]'  --> 13 positions 
+cat data.txt | tr '[G-ZA-Fg-za-f]' '[T-ZA-St-za-s]' | awk 'NF{print $NF}'
+
+# level 12
+ls
+data.txt --> hexadecimal
+copy paste data.txt at data.hex
+xxd -r data.hex > data
+file data --> gzip
+mv data.gzip
+7z l data.gzip
+7z x data.gzip
+ls --> data2.bin
+file data2.bin --> bzip2
+7z l data2.bin
+
+touch decompressor.sh
+rm data2.bin
+rm data.hex
+
+7z l data.gzip | grep "Name"
+7z l data.gzip | grep "Name" -A 2  --> 2 lines down
+7z l data.gzip | grep "Name" -A 2 | tail -n 1  --> last line
+7z l data.gzip | grep "Name" -A 2 | tail -n 1 | awk 'NF{print $NF}'
+mv data.gzip content.gzip
+
+nano decompressor.sh
+#!/bin/bash
+
+name_decompressed=$(7z l content.gzip | grep "Name" -A 2 | tail -n 1 | awk 'NF{print $NF}')
+7z x content.gzip > /dev/null 2>$1
+
+while true; do
+    7z l $name_decompressed > /dev/null 2>$1
+
+    if ["$(echo $?)"]; then
+        decompressed_next=$(7z l $name_decompressed | grep "Name" -A 2 | tail -n 1 | awk 'NF{print $NF}')
+        7z x "name_decompressed > /dev/null 2>$1 && name_decompressed=$decompressed_next
+    else
+        cat $name_decompressed; rm data* 2>/dev/null 
+        exit 1
+    fi
+
+done
+
+# Level 13
+
+ 
+
